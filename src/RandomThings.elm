@@ -82,22 +82,27 @@ view model =
 
 getDieFaceUrl : Int -> String
 getDieFaceUrl dieFaceNum =
-    let
-        diceFaces =
-            [ "/images/1_dot.png"
-            , "/images/2_dots.png"
-            , "/images/3_dots.png"
-            , "/images/4_dots.png"
-            , "/images/5_dots.png"
-            , "/images/6_dots.png"
-            ]
-    in
-    case List.head (List.drop (dieFaceNum - 1) diceFaces) of
-        Just a ->
-            a
-
-        Nothing ->
+    case dieFaceNum of
+        1 ->
             "/images/1_dot.png"
+
+        2 ->
+            "/images/2_dots.png"
+
+        3 ->
+            "/images/3_dots.png"
+
+        4 ->
+            "/images/4_dots.png"
+
+        5 ->
+            "/images/5_dots.png"
+
+        6 ->
+            "/images/6_dots.png"
+
+        _ ->
+            ""
 
 
 
