@@ -2,6 +2,7 @@ module RandomThings exposing (main)
 
 import Browser
 import Html exposing (..)
+import Html.Attributes exposing (..)
 import Html.Events exposing (..)
 import Random
 
@@ -74,5 +75,27 @@ view : Model -> Html Msg
 view model =
     div []
         [ h1 [] [ text (String.fromInt model.dieFace) ]
+        , img [ src (getDieFaceUrl model.dieFace) ] []
         , button [ onClick Roll ] [ text "Roll" ]
         ]
+
+
+getDieFaceUrl : Int -> String
+getDieFaceUrl dieFaceNum =
+    if dieFaceNum == 1 then
+        "/images/1_dot.png"
+
+    else if dieFaceNum == 2 then
+        "/images/2_dots.png"
+
+    else if dieFaceNum == 3 then
+        "/images/3_dots.png"
+
+    else if dieFaceNum == 4 then
+        "/images/4_dots.png"
+
+    else if dieFaceNum == 5 then
+        "/images/5_dots.png"
+
+    else
+        "/images/6_dots.png"
