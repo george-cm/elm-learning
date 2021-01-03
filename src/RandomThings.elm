@@ -82,20 +82,34 @@ view model =
 
 getDieFaceUrl : Int -> String
 getDieFaceUrl dieFaceNum =
-    if dieFaceNum == 1 then
-        "/images/1_dot.png"
+    let
+        diceFaces =
+            [ "/images/1_dot.png"
+            , "/images/2_dots.png"
+            , "/images/3_dots.png"
+            , "/images/4_dots.png"
+            , "/images/5_dots.png"
+            , "/images/6_dots.png"
+            ]
+    in
+    case List.head (List.drop (dieFaceNum - 1) diceFaces) of
+        Just a ->
+            a
 
-    else if dieFaceNum == 2 then
-        "/images/2_dots.png"
+        Nothing ->
+            "/images/1_dot.png"
 
-    else if dieFaceNum == 3 then
-        "/images/3_dots.png"
 
-    else if dieFaceNum == 4 then
-        "/images/4_dots.png"
 
-    else if dieFaceNum == 5 then
-        "/images/5_dots.png"
-
-    else
-        "/images/6_dots.png"
+-- if dieFaceNum == 1 then
+--     "/images/1_dot.png"
+-- else if dieFaceNum == 2 then
+--     "/images/2_dots.png"
+-- else if dieFaceNum == 3 then
+--     "/images/3_dots.png"
+-- else if dieFaceNum == 4 then
+--     "/images/4_dots.png"
+-- else if dieFaceNum == 5 then
+--     "/images/5_dots.png"
+-- else
+--     "/images/6_dots.png"
