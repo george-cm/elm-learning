@@ -5,6 +5,8 @@ import Html exposing (..)
 import Html.Attributes exposing (..)
 import Html.Events exposing (..)
 import Random
+import Svg exposing (..)
+import Svg.Attributes exposing (..)
 
 
 
@@ -74,10 +76,214 @@ subscriptions model =
 view : Model -> Html Msg
 view model =
     div []
-        [ h1 [] [ text (String.fromInt model.dieFace) ]
-        , img [ src (getDieFaceUrl model.dieFace) ] []
-        , button [ onClick Roll ] [ text "Roll" ]
+        [ h1 [] [ Html.text (String.fromInt model.dieFace) ]
+        , img [ src (getDieFaceUrl model.dieFace), Html.Attributes.style "display" "block" ] []
+        , button [ onClick Roll, Html.Attributes.style "display" "block" ] [ Html.text "Roll" ]
+        , getSvgDieFace model.dieFace
         ]
+
+
+getSvgDieFace : Int -> Html msg
+getSvgDieFace dieFaceNum =
+    let
+        side : Int
+        side =
+            100
+
+        xpos : Int
+        xpos =
+            10
+
+        ypos : Int
+        ypos =
+            10
+    in
+    svg
+        [ Svg.Attributes.width "120"
+        , Svg.Attributes.height "120"
+        , viewBox "0 0 120 120"
+        ]
+        (rect
+            [ x (String.fromInt xpos)
+            , y (String.fromInt ypos)
+            , Svg.Attributes.width (String.fromInt side)
+            , Svg.Attributes.height (String.fromInt side)
+            , rx "15"
+            , ry "15"
+            , stroke "black"
+            , fill "white"
+            ]
+            []
+            :: (case dieFaceNum of
+                    1 ->
+                        [ circle
+                            [ cx (String.fromInt (xpos + side // 2))
+                            , cy (String.fromInt (ypos + side // 2))
+                            , r "20"
+                            , fill "red"
+                            ]
+                            []
+                        ]
+
+                    2 ->
+                        [ circle
+                            [ cx (String.fromInt (xpos + 1 * (side // 4)))
+                            , cy (String.fromInt (ypos + 3 * (side // 4)))
+                            , r "10"
+                            , fill "black"
+                            ]
+                            []
+                        , circle
+                            [ cx (String.fromInt (xpos + 3 * (side // 4)))
+                            , cy (String.fromInt (ypos + 1 * (side // 4)))
+                            , r "10"
+                            , fill "black"
+                            ]
+                            []
+                        ]
+
+                    3 ->
+                        [ circle
+                            [ cx (String.fromInt (xpos + 1 * (side // 4)))
+                            , cy (String.fromInt (ypos + 3 * (side // 4)))
+                            , r "10"
+                            , fill "black"
+                            ]
+                            []
+                        , circle
+                            [ cx (String.fromInt (xpos + 1 * (side // 2)))
+                            , cy (String.fromInt (ypos + 1 * (side // 2)))
+                            , r "10"
+                            , fill "black"
+                            ]
+                            []
+                        , circle
+                            [ cx (String.fromInt (xpos + 3 * (side // 4)))
+                            , cy (String.fromInt (ypos + 1 * (side // 4)))
+                            , r "10"
+                            , fill "black"
+                            ]
+                            []
+                        ]
+
+                    4 ->
+                        [ circle
+                            [ cx (String.fromInt (xpos + 1 * (side // 4)))
+                            , cy (String.fromInt (ypos + 1 * (side // 4)))
+                            , r "10"
+                            , fill "black"
+                            ]
+                            []
+                        , circle
+                            [ cx (String.fromInt (xpos + 3 * (side // 4)))
+                            , cy (String.fromInt (ypos + 1 * (side // 4)))
+                            , r "10"
+                            , fill "black"
+                            ]
+                            []
+                        , circle
+                            [ cx (String.fromInt (xpos + 3 * (side // 4)))
+                            , cy (String.fromInt (ypos + 3 * (side // 4)))
+                            , r "10"
+                            , fill "black"
+                            ]
+                            []
+                        , circle
+                            [ cx (String.fromInt (xpos + 1 * (side // 4)))
+                            , cy (String.fromInt (ypos + 3 * (side // 4)))
+                            , r "10"
+                            , fill "black"
+                            ]
+                            []
+                        ]
+
+                    5 ->
+                        [ circle
+                            [ cx (String.fromInt (xpos + 1 * (side // 4)))
+                            , cy (String.fromInt (ypos + 1 * (side // 4)))
+                            , r "10"
+                            , fill "black"
+                            ]
+                            []
+                        , circle
+                            [ cx (String.fromInt (xpos + 3 * (side // 4)))
+                            , cy (String.fromInt (ypos + 1 * (side // 4)))
+                            , r "10"
+                            , fill "black"
+                            ]
+                            []
+                        , circle
+                            [ cx (String.fromInt (xpos + 3 * (side // 4)))
+                            , cy (String.fromInt (ypos + 3 * (side // 4)))
+                            , r "10"
+                            , fill "black"
+                            ]
+                            []
+                        , circle
+                            [ cx (String.fromInt (xpos + 1 * (side // 4)))
+                            , cy (String.fromInt (ypos + 3 * (side // 4)))
+                            , r "10"
+                            , fill "black"
+                            ]
+                            []
+                        , circle
+                            [ cx (String.fromInt (xpos + 1 * (side // 2)))
+                            , cy (String.fromInt (ypos + 1 * (side // 2)))
+                            , r "10"
+                            , fill "black"
+                            ]
+                            []
+                        ]
+
+                    6 ->
+                        [ circle
+                            [ cx (String.fromInt (xpos + 1 * (side // 4)))
+                            , cy (String.fromInt (ypos + 1 * (side // 4)))
+                            , r "10"
+                            , fill "black"
+                            ]
+                            []
+                        , circle
+                            [ cx (String.fromInt (xpos + 3 * (side // 4)))
+                            , cy (String.fromInt (ypos + 1 * (side // 4)))
+                            , r "10"
+                            , fill "black"
+                            ]
+                            []
+                        , circle
+                            [ cx (String.fromInt (xpos + 3 * (side // 4)))
+                            , cy (String.fromInt (ypos + 3 * (side // 4)))
+                            , r "10"
+                            , fill "black"
+                            ]
+                            []
+                        , circle
+                            [ cx (String.fromInt (xpos + 1 * (side // 4)))
+                            , cy (String.fromInt (ypos + 3 * (side // 4)))
+                            , r "10"
+                            , fill "black"
+                            ]
+                            []
+                        , circle
+                            [ cx (String.fromInt (xpos + 1 * (side // 2)))
+                            , cy (String.fromInt (ypos + 1 * (side // 4)))
+                            , r "10"
+                            , fill "black"
+                            ]
+                            []
+                        , circle
+                            [ cx (String.fromInt (xpos + 1 * (side // 2)))
+                            , cy (String.fromInt (ypos + 3 * (side // 4)))
+                            , r "10"
+                            , fill "black"
+                            ]
+                            []
+                        ]
+
+                    _ ->
+                        []
+               )
+        )
 
 
 getDieFaceUrl : Int -> String
