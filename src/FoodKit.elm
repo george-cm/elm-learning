@@ -132,7 +132,7 @@ finalCount : Dict String Int -> Dict String Int -> String -> Int
 finalCount dict1 dict2 k =
     let
         d1count = Maybe.withDefault 0 (Dict.get k dict1)
-        d2count = Maybe.withDefault 0 (Dict.get k dict2)        
+        d2count = Maybe.withDefault 0 (Dict.get k dict2)
     in
     d2count - d1count
     
@@ -142,7 +142,7 @@ buildDict : Dict String Int -> List String -> Dict String Int
 buildDict d lines =
     case lines of
         x :: xs ->
-            if not (Dict.member x d) then        
+            if not (Dict.member x d) then
                 buildDict (Dict.insert x (countElemOccurance x lines) d) xs
             else
                 buildDict d xs
@@ -152,7 +152,7 @@ buildDict d lines =
 countElemOccurance : String -> List String -> Int
 countElemOccurance elem list =
     case list of
-       x :: xs -> 
+       x :: xs ->
             if x == elem then
                 1 + (countElemOccurance elem xs)
             else 
@@ -173,7 +173,7 @@ processInput input =
         regex = Maybe.withDefault Regex.never maybeRegex
         noDuplicates = Regex.replace regex (\_ -> "") input
 
-        pattern2 = "(.*)\\n+(?=(SUPE|ALEGE-TI MESELE|MIX & MATCH))"
+        pattern2 = "(.*)\\n+(?=(SUPE|ALEGE-TI MESELE|MIX & MATCH|MESE))"
 
         maybeRegex2 = Regex.fromStringWith options pattern2
 
